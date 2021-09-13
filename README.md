@@ -19,7 +19,6 @@
 
 - has_many :items
 - has_many :buys
-- has_many :adds
 
 
 
@@ -55,9 +54,8 @@
 
 | Column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| buy            | integer    | null: false                    |
-| user           | references | null: false, foreign_key: true |
 | item           | references | null: false, foreign_key: true |
+| user           | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -79,10 +77,8 @@
 | address        | string     | null: false                    |
 | building       | string     |                                |
 | phone_number   | string     | null: false                    |
-| user           | references | null: false, foreign_key: true |
 | buy            | references | null: false, foreign_key: true |
 
 ### Association
 
 - mas_many   :buys
-- belongs_to :user
