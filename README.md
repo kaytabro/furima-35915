@@ -61,7 +61,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- belongs_to :add
+- has_one    :adds
 
 
 
@@ -81,4 +81,4 @@
 
 ### Association
 
-- mas_many   :buys
+- belongs_to :buy
