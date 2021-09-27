@@ -73,7 +73,7 @@ RSpec.describe Item, type: :model do
       it '価格(price)が全角入力だと保存できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price 価格は、価格は半角数値で設定して下さい"
+        expect(@item.errors.full_messages).to include "Price は、半角数字で入力して下さい"
       end
     end
   end
