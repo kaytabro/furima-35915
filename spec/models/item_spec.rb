@@ -35,22 +35,27 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Explain can't be blank"
       end
-      it 'カテゴリー(category_id)が空では保存できない' do
+      it 'カテゴリー(category_id)が空(1)では保存できない' do
         @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
-      it '商品の状態の情報(status_id)が空では保存できない' do
+      it '商品の状態の情報(status_id)が空で(1)は保存できない' do
         @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Status can't be blank"
       end
-      it '発送元の地域の情報(postage_id)が空では保存できない' do
+      it '配送料の負担の情報(postage_id)が空(1)では保存できない' do
         @item.postage_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Postage can't be blank"
       end
-      it '発送元の地域の情報(take_days_id)が空では保存できない' do
+      it '発送元の地域の情報(prefecture_id)が空(1)では保存できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Prefecture can't be blank"
+      end
+      it '発送までの日数の情報(take_days_id)が空(1)では保存できない' do
         @item.take_days_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include "Take days can't be blank"
@@ -63,17 +68,17 @@ RSpec.describe Item, type: :model do
       it '価格(price)が¥300未満では保存できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be greater than or equal to 300"
+        expect(@item.errors.full_messages).to include "Price は、半角数字で¥300~¥9,999,999の間で入力して下さい"
       end
       it '価格(price)が¥9,999,999を超えると保存できない' do
         @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be less than or equal to 9999999"
+        expect(@item.errors.full_messages).to include "Price は、半角数字で¥300~¥9,999,999の間で入力して下さい"
       end
       it '価格(price)が全角入力だと保存できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price は、半角数字で入力して下さい"
+        expect(@item.errors.full_messages).to include "Price は、半角数字で¥300~¥9,999,999の間で入力して下さい"
       end
       it 'userが紐づいていないと保存できない。' do
         @item.user = nil
