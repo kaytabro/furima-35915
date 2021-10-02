@@ -20,5 +20,6 @@ class Item < ApplicationRecord
                             message: 'は、半角数字で¥300~¥9,999,999の間で入力して下さい' }
 
   # Active Hashのバリデーション
-  validates :category_id, :status_id, :postage_id, :prefecture_id, :take_days_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
+  validates :category_id, :status_id, :postage_id, :prefecture_id, :take_days_id, presence: true,
+                                                                                  numericality: { other_than: 1, message: "can't be blank" }
 end
