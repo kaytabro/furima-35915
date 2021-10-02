@@ -13,8 +13,7 @@ class Category < ActiveHash::Base
     { id: 11, name: 'その他' }
   ]
 
-  #主テーブルitemとのアソシエーション
+  # 主テーブルitemとのアソシエーション
   include ActiveHash::Associations
   has_many :items
-
-  end
+end
