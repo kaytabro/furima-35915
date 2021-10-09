@@ -10,7 +10,6 @@ class BuysController < ApplicationController
       @buy_add.save
       redirect_to root_path
     else
-      binding.pry
       render :index
     end
   end
