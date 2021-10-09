@@ -57,7 +57,17 @@ RSpec.describe BuyAdd, type: :model do
         expect(@buy_add.errors.full_messages).to include "Phone number can't be blank"
       end
       it '電話番号(phone_number)が半角のハイフンを除いた正しい形式でないと保存できない' do
-        @buy_add.phone_number = '090-1234-5678'
+        @buy_add.phone_number = '090-123-456'
+        @buy_add.valid?
+        expect(@buy_add.errors.full_messages).to include "Phone number is invalid. Not include hyphen(-)"
+      end
+      it '電話番号(phone_number)が半角の10桁以上でないと保存できない' do
+        @buy_add.phone_number = '090123456'
+        @buy_add.valid?
+        expect(@buy_add.errors.full_messages).to include "Phone number is invalid. Not include hyphen(-)"
+      end
+      it '電話番号(phone_number)が半角の11桁以下でないと保存できない' do
+        @buy_add.phone_number = '090123456789'
         @buy_add.valid?
         expect(@buy_add.errors.full_messages).to include "Phone number is invalid. Not include hyphen(-)"
       end
