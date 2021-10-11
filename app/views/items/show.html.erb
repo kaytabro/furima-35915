@@ -8,11 +8,13 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <div class="sold-out">
-        <span>Sold Out!!</span>
+
+      <div class='sold-out'>
+        <% if @item.buy.present?%>
+          <span>Sold Out!!</span>
+        <% end %>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -23,15 +25,15 @@
       </span>
     </div>
 
-    <%# ifでログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、表示される内容を分けている %>
+    <%# ifで売却中の商品か、ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、表示される内容を分けている %>
     <% if user_signed_in? && @item.user_id == current_user.id %>
       <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", item_path(@item), method: :delete, class:"item-destroy" %>
-    <% elsif user_signed_in? %>
+    <% elsif @item.buy.blank? && user_signed_in? %>
       <%= link_to "購入画面に進む", item_buys_path(@item) ,class:"item-red-btn"%>
     <% end %>
-    <%# ifでログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、表示される内容を分けている %>
+    <%# ifで売却中の商品か、ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、表示される内容を分けている %>
 
     <div class="item-explain-box">
       <span><%= @item.explain %></span>
