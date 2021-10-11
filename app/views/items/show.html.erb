@@ -1,6 +1,5 @@
 <%= render "shared/header" %>
 
-<%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
@@ -25,7 +24,6 @@
       </span>
     </div>
 
-    <%# ifで売却中の商品か、ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、表示される内容を分けている %>
     <% if user_signed_in? && @item.user_id == current_user.id %>
       <%= link_to "商品の編集", edit_item_path(@item), method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
@@ -33,7 +31,6 @@
     <% elsif @item.buy.blank? && user_signed_in? %>
       <%= link_to "購入画面に進む", item_buys_path(@item) ,class:"item-red-btn"%>
     <% end %>
-    <%# ifで売却中の商品か、ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、表示される内容を分けている %>
 
     <div class="item-explain-box">
       <span><%= @item.explain %></span>
@@ -77,7 +74,6 @@
       </div>
     </div>
   </div>
-  <%# /商品の概要 %>
 
   <div class="comment-box">
     <form>

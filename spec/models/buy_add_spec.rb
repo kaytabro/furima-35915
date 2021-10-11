@@ -46,11 +46,6 @@ RSpec.describe BuyAdd, type: :model do
         @buy_add.valid?
         expect(@buy_add.errors.full_messages).to include "Address can't be blank"
       end
-      it '発送先の地域の情報(address)が空では保存できない' do
-        @buy_add.address = ''
-        @buy_add.valid?
-        expect(@buy_add.errors.full_messages).to include "Address can't be blank"
-      end
       it '電話番号(phone_number)が空だと保存できない' do
         @buy_add.phone_number = ''
         @buy_add.valid?
