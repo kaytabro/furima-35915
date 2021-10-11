@@ -81,6 +81,11 @@ RSpec.describe BuyAdd, type: :model do
         @buy_add.valid?
         expect(@buy_add.errors.full_messages).to include("Item can't be blank")
       end
+      it "tokenが空では登録できない" do
+        @buy_add.token = nil
+        @buy_add.valid?
+        expect(@buy_add.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
