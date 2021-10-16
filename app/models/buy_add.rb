@@ -1,7 +1,7 @@
 class BuyAdd
 
   include ActiveModel::Model
-  attr_accessor :post_number, :prefecture_id, :municipalities, :address, :building, :phone_number, :item_id, :user_id, :token
+  attr_accessor :post_number, :prefecture_id, :municipalities, :address, :building, :phone_number, :item_id, :user_id, :token, :price
 
   with_options presence: true do
     validates :post_number, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
